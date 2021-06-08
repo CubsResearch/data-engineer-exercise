@@ -12,7 +12,7 @@ You will be given credentials to a SQL database to store the output of your proc
 - Game metadata (Date, time, venue ID/name)
 - Team info (IDs, names)
 - Score
-- Number of pitches/plays in the game
+- Number of pitches in the game
 - Name/ID of batter with highest exit-velocity hit of the game
 
 You will notice while exploring the API that this is a very small subset of the available data. While you can explore and feel free to store anything else you find interesting, we are looking spefically for the above items.
@@ -24,6 +24,8 @@ For example, to fetch a list of all Triple-A (sport ID 11) games on 6/3/2021, yo
 
 ### Some helpful notes:
 - MLB Sport ID is 1.
+- Within a game, there is a hierarchy of plays and events, where each play contains multiple events. Plays can be thought of at-bats or plate appearances, whereas events can be thought of as pitches or other actions that happen during an at-bat, such as stolen bases. You can assume the batter and pitcher are constant for all events within a play.
+- In the MLB API, exit-velocity is referred to as `launchSpeed` and can be found within the `hitData` object of a pitch (only some pitches).
 - You know a game is completed when it has a `abstractGameCode` or `statusCode` of `F`.
 - Feel free to use any modules available via pip (or your language's similar package management system). Include a requirements.txt file that lists the dependencies.
 - Your code can assume the tables it uses have already been created. That is, it doesn't need to automatically create the tables.
